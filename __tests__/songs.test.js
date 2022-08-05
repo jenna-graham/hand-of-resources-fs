@@ -62,6 +62,20 @@ describe('backend-express-template routes', () => {
     });
   });
 
+  it('POST /songs should create a new song', async () => {
+    const newSong = {
+      title: 'The Seed',
+      artist: 'The Roots',
+      released: 2002,
+    };
+    const res = await request(app).post('/songs').send(newSong);
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({
+      id: expect.any(String),
+      ...newSong,
+    });
+  });
+
   afterAll(() => {
     pool.end();
   });
