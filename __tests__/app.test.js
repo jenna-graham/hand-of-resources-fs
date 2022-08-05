@@ -59,6 +59,20 @@ describe('backend-express-template routes', () => {
       properties: 'transformations',
     });
   });
+  it('POST /crystals should create a new crystal', async () => {
+    const newCrystal = {
+      name: 'Citrine',
+      color: 'yellow',
+      zodiac: 'Aries',
+      properties: 'attracts and maintains wealth',
+    };
+    const res = await request(app).post('/crystals').send(newCrystal);
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({
+      id: expect.any(String),
+      ...newCrystal,
+    });
+  });
   afterAll(() => {
     pool.end();
   });
