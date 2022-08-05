@@ -48,6 +48,17 @@ describe('backend-express-template routes', () => {
       },
     ]);
   });
+  it('GET crystals/:id should return a single crystal', async () => {
+    const res = await request(app).get('/crystals/4');
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({
+      id: '4',
+      name: 'Malachite',
+      color: 'green',
+      zodiac: 'Scorpio',
+      properties: 'transformations',
+    });
+  });
   afterAll(() => {
     pool.end();
   });
