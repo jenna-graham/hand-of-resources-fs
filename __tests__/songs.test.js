@@ -84,6 +84,13 @@ describe('backend-express-template routes', () => {
     expect(res.body.released).toBe(1997);
   });
 
+  it('DELETE /songs/:id should delete a song', async () => {
+    const res = await request(app).delete('/songs/1');
+    expect(res.status).toBe(200);
+    const songRes = await request(app).get('/songs/1');
+    expect(songRes.status).toBe(404);
+  });
+
   afterAll(() => {
     pool.end();
   });
