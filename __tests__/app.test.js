@@ -83,6 +83,13 @@ describe('backend-express-template routes', () => {
     expect(res.status).toBe(200);
     expect(res.body.color).toBe('dark green');
   });
+
+  it('DELETE /crystals/:id should delete a crystal', async () => {
+    const res = await request(app).delete('/crystals/1');
+    expect(res.status).toBe(200);
+    const crystalRes = await request(app).get('/crystals/1');
+    expect(crystalRes.status).toBe(404);
+  });
   afterAll(() => {
     pool.end();
   });
