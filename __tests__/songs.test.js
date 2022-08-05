@@ -76,6 +76,14 @@ describe('backend-express-template routes', () => {
     });
   });
 
+  it('PUT /songs/:id should update an existing song', async () => {
+    const res = await request(app).put('/songs/6').send({
+      released: 1997,
+    });
+    expect(res.status).toBe(200);
+    expect(res.body.released).toBe(1997);
+  });
+
   afterAll(() => {
     pool.end();
   });
