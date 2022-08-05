@@ -48,6 +48,7 @@ describe('backend-express-template routes', () => {
       },
     ]);
   });
+
   it('GET crystals/:id should return a single crystal', async () => {
     const res = await request(app).get('/crystals/4');
     expect(res.status).toBe(200);
@@ -59,6 +60,7 @@ describe('backend-express-template routes', () => {
       properties: 'transformations',
     });
   });
+
   it('POST /crystals should create a new crystal', async () => {
     const newCrystal = {
       name: 'Citrine',
@@ -72,6 +74,14 @@ describe('backend-express-template routes', () => {
       id: expect.any(String),
       ...newCrystal,
     });
+  });
+
+  it('PUT /crystals/:id should update an existing crystal', async () => {
+    const res = await request(app).put('/crystals/4').send({
+      color: 'dark green',
+    });
+    expect(res.status).toBe(200);
+    expect(res.body.color).toBe('dark green');
   });
   afterAll(() => {
     pool.end();
