@@ -51,6 +51,17 @@ describe('backend-express-template routes', () => {
     ]);
   });
 
+  it('GET /songs/:id should return a single song', async () => {
+    const res = await request(app).get('/songs/1');
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({
+      id: '1',
+      title: 'Is It a Crime?',
+      artist: 'Sade',
+      released: 1985,
+    });
+  });
+
   afterAll(() => {
     pool.end();
   });
