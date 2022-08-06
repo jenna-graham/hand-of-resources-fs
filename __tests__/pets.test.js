@@ -72,6 +72,13 @@ describe('backend-express-template routes', () => {
     expect(res.body.age).toBe(4);
   });
 
+  it('DELETE /pets/:id should delete a pet', async () => {
+    const res = await request(app).delete('/pets/1');
+    expect(res.status).toBe(200);
+    const petRes = await request(app).get('/pets/1');
+    expect(petRes.status).toBe(404);
+  });
+
   afterAll(() => {
     pool.end();
   });
