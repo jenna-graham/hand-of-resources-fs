@@ -8,7 +8,7 @@ describe('backend-express-template routes', () => {
     return setup(pool);
   });
 
-  it('Get /songs should return a list of songs', async () => {
+  it('GET /songs should return a list of songs', async () => {
     const res = await request(app).get('/songs');
     expect(res.status).toBe(200);
     expect(res.body).toEqual([

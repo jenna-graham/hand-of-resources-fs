@@ -3,6 +3,7 @@
 DROP table if exists crystals;
 DROP table if exists songs;
 DROP table if exists animals;
+DROP table if exists pets;
 
 CREATE table crystals (
     id BIGINT GENERATED ALWAYS AS IDENTITY,
@@ -22,6 +23,13 @@ CREATE TABLE animals (
     type VARCHAR NOT NULL,
     color VARCHAR NOT NULL,
     origin VARCHAR NOT NULL   
+);
+
+CREATE TABLE pets (
+    id BIGINT GENERATED ALWAYS AS IDENTITY,
+    name VARCHAR NOT NULL,
+    breed VARCHAR NOT NULL,
+    age INT
 );
 
 INSERT INTO crystals (name, color, zodiac, properties) VALUES
@@ -45,3 +53,9 @@ INSERT INTO animals (type, color, origin) VALUES
 ('alligator', 'green', 'North America'),
 ('gorilla', 'black', 'Africa'),
 ('flamingo', 'pink', 'Africa, Asia, Europe');
+
+INSERT INTO pets (name, breed, age) VALUES
+('Redd', 'Labradoodle', 2),
+('Bolt', 'German Shepard mix', 3),
+('Baby Kitty', 'Maine Coone', 12),
+('Romeo', 'Goldendoodle', 9);
