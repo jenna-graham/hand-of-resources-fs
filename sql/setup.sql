@@ -2,6 +2,7 @@
 -- The SQL in this file will be executed when you run `npm run setup-db`
 DROP table if exists crystals;
 DROP table if exists songs;
+DROP table if exists animals;
 
 CREATE table crystals (
     id BIGINT GENERATED ALWAYS AS IDENTITY,
@@ -15,6 +16,12 @@ CREATE TABLE songs (
     title VARCHAR NOT NULL,
     artist VARCHAR NOT NULL,
     released INT  
+);
+CREATE TABLE animals (
+    id BIGINT GENERATED ALWAYS AS IDENTITY,
+    type VARCHAR NOT NULL,
+    color VARCHAR NOT NULL,
+    origin VARCHAR NOT NULL   
 );
 
 INSERT INTO crystals (name, color, zodiac, properties) VALUES
@@ -31,3 +38,10 @@ INSERT INTO songs (title, artist, released) VALUES
 ('Eternal Light', 'Free Nationals', 2019),
 ('Orange Moon', 'Erykah Badu', 2000),
 ('Gaze', 'Sweetback', 1996);
+
+INSERT INTO animals (type, color, origin) VALUES
+('tiger', 'orange and black', 'China'),
+('sloth', 'light brown', 'South America'),
+('alligator', 'green', 'North America'),
+('gorilla', 'black', 'Africa'),
+('flamingo', 'pink', 'Africa, Asia, Europe');
