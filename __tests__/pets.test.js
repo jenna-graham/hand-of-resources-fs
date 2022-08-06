@@ -39,6 +39,17 @@ describe('backend-express-template routes', () => {
     ]);
   });
 
+  it('GET /pets/:id should return a single pet', async () => {
+    const res = await request(app).get('/pets/1');
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({
+      id: '1',
+      name: 'Redd',
+      breed: 'Labradoodle',
+      age: 2,
+    });
+  });
+
   afterAll(() => {
     pool.end();
   });
