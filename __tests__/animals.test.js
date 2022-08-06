@@ -44,6 +44,7 @@ describe('backend-express-template routes', () => {
       },
     ]);
   });
+
   it('GET /animals/:id should return a single animal', async () => {
     const res = await request(app).get('/animals/1');
     expect(res.status).toBe(200);
@@ -52,6 +53,20 @@ describe('backend-express-template routes', () => {
       type: 'tiger',
       color: 'orange and black',
       origin: 'China',
+    });
+  });
+
+  it('POST /animals should create a new animal', async () => {
+    const newAnimal = {
+      type: 'giraffe',
+      color: 'yellow',
+      origin: 'Africa',
+    };
+    const res = await request(app).post('/animals').send(newAnimal);
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({
+      id: expect.any(String),
+      ...newAnimal,
     });
   });
 
