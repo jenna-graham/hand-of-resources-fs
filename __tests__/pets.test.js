@@ -50,6 +50,20 @@ describe('backend-express-template routes', () => {
     });
   });
 
+  it('POST /pets should create a new pet', async () => {
+    const newPet = {
+      name: 'Koko',
+      breed: 'Pekingese, Jack Russel mix',
+      age: 14,
+    };
+    const res = await request(app).post('/pets').send(newPet);
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({
+      id: expect.any(String),
+      ...newPet,
+    });
+  });
+
   afterAll(() => {
     pool.end();
   });
