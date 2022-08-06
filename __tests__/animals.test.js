@@ -70,6 +70,14 @@ describe('backend-express-template routes', () => {
     });
   });
 
+  it('PUT /animals/:id should update an existing animal', async () => {
+    const res = await request(app).put('/animals/2').send({
+      color: 'brown',
+    });
+    expect(res.status).toBe(200);
+    expect(res.body.color).toBe('brown');
+  });
+
   afterAll(() => {
     pool.end();
   });
