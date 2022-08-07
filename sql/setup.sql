@@ -1,9 +1,10 @@
 -- Use this file to define your SQL tables
 -- The SQL in this file will be executed when you run `npm run setup-db`
-DROP table if exists crystals;
-DROP table if exists songs;
-DROP table if exists animals;
-DROP table if exists pets;
+DROP TABLE if exists crystals;
+DROP TABLE if exists songs;
+DROP TABLE if exists animals;
+DROP TABLE if exists pets;
+DROP TABLE if exists ice_cream;
 
 CREATE table crystals (
     id BIGINT GENERATED ALWAYS AS IDENTITY,
@@ -30,6 +31,13 @@ CREATE TABLE pets (
     name VARCHAR NOT NULL,
     breed VARCHAR NOT NULL,
     age INT
+);
+
+CREATE TABLE ice_cream (
+    id BIGINT GENERATED ALWAYS AS IDENTITY,
+    name VARCHAR NOT NULL,
+    rating INT,
+    favorite BOOLEAN   
 );
 
 INSERT INTO crystals (name, color, zodiac, properties) VALUES
@@ -59,3 +67,10 @@ INSERT INTO pets (name, breed, age) VALUES
 ('Bolt', 'German Shepard mix', 3),
 ('Baby Kitty', 'Maine Coone', 12),
 ('Romeo', 'Goldendoodle', 9);
+
+INSERT INTO ice_cream (name, rating, favorite) VALUES
+('Sea Salt w/ Caramel Ribbons', 5, 'true'),
+('Arbequina Olive Oil', 5, 'true'),
+('Strawberry Honey Balsamic w/ Black Pepper', 4, 'false'),
+('Honey Lavender', 4, 'true'),
+('Pear & Blue Cheese', 2, 'false');
