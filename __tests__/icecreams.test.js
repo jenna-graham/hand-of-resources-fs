@@ -43,6 +43,18 @@ describe('backend-express-template routes', () => {
       },
     ]);
   });
+
+  it('GET /ice_creams/:id should return a single ice cream', async () => {
+    const res = await request(app).get('/ice_creams/1');
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({
+      id: '1',
+      name: 'Sea Salt w/ Caramel Ribbons',
+      rating: 5,
+      favorite: true,
+    });
+  });
+
   afterAll(() => {
     pool.end();
   });
