@@ -78,6 +78,13 @@ describe('backend-express-template routes', () => {
     expect(res.body.rating).toBe(4);
   });
 
+  it('DELETE /ice_creams/:id should delete an ice cream', async () => {
+    const res = await request(app).delete('/ice_creams/1');
+    expect(res.status).toBe(200);
+    const creamRes = await request(app).get('/ice_creams/1');
+    expect(creamRes.status).toBe(404);
+  });
+
   afterAll(() => {
     pool.end();
   });
