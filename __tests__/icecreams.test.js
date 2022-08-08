@@ -70,6 +70,14 @@ describe('backend-express-template routes', () => {
     });
   });
 
+  it('PUT /ice_creams/:id should update existing ice cream', async () => {
+    const res = await request(app).put('/ice_creams/5').send({
+      rating: 4,
+    });
+    expect(res.status).toBe(200);
+    expect(res.body.rating).toBe(4);
+  });
+
   afterAll(() => {
     pool.end();
   });
