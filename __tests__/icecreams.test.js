@@ -2,6 +2,7 @@ const pool = require('../lib/utils/pool');
 const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
+const ice_creams = require('../lib/controllers/ice_creams');
 
 describe('backend-express-template routes', () => {
   beforeEach(() => {
@@ -52,6 +53,20 @@ describe('backend-express-template routes', () => {
       name: 'Sea Salt w/ Caramel Ribbons',
       rating: 5,
       favorite: true,
+    });
+  });
+
+  it('POST /ice_creams should create a new ice cream', async () => {
+    const newCream = {
+      name: 'Pot of Gold',
+      rating: 5,
+      favorite: true,
+    };
+    const res = await request(app).post('/ice_creams').send(newCream);
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({
+      id: expect.any(String),
+      ...newCream,
     });
   });
 
